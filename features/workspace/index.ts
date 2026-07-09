@@ -4,3 +4,4 @@ export * from "./services/workspace.service";
 export * from "./queries";
 export * from "./mutations";
 export * from "./actions";
+export * from "./components";
