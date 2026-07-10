@@ -18,6 +18,14 @@
 
 - CS-008 — módulo Products completo (SPC-0002): `features/products/` (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Reaproveita schema e RLS de `products` já existentes desde CS-007, sem migração nova.
 
+## [Unreleased] - 2026-07-10 (3)
+
+### Added
+
+- CS-009 — módulo Brands completo (SPC-0003): migração `003_create_brands_and_rls.sql` (tabela `brands`, RLS `brands_member_all`, `brand_id` aditivo em `products`), `features/brands/` completo, página `app/(app)/brands/page.tsx`.
+- Seletor de marca (opcional) no `ProductForm`, novo componente `components/ui/Select.tsx`.
+- Entrada "Marcas" no Sidebar.
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed

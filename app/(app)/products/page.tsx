@@ -1,5 +1,6 @@
 import { PageHeader, Button, EmptyState } from "@/components/ui";
 import { ProductForm, ProductList, listProductsQuery } from "@/features/products";
+import { listBrandsQuery } from "@/features/brands";
 import { listWorkspacesQuery } from "@/features/workspace";
 import { createClient } from "@/lib/supabase/server";
 
@@ -24,7 +25,10 @@ export default async function ProductsPage() {
   }
 
   const activeWorkspace = workspaces[0];
-  const products = await listProductsQuery(supabase, activeWorkspace.id);
+  const [products, brands] = await Promise.all([
+    listProductsQuery(supabase, activeWorkspace.id),
+    listBrandsQuery(supabase, activeWorkspace.id),
+  ]);
 
   return (
     <div className="flex w-full flex-col gap-6">
@@ -34,7 +38,7 @@ export default async function ProductsPage() {
         action={<Button type="button">Novo Produto</Button>}
       />
 
-      <ProductForm workspaceId={activeWorkspace.id} />
+      <ProductForm workspaceId={activeWorkspace.id} brands={brands} />
 
       <ProductList products={products} />
     </div>

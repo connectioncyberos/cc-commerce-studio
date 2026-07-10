@@ -14,6 +14,8 @@ export const productSchema = z.object({
     .optional(),
 
   status: z.enum(["draft", "active", "archived"]).default("draft"),
+
+  brand_id: z.string().uuid().optional().or(z.literal("")),
 });
 
 export type ProductSchema = z.infer<typeof productSchema>;

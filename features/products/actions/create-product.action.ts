@@ -18,6 +18,7 @@ export async function createProductAction(
     name: formData.get("name") ?? "",
     description: formData.get("description") || undefined,
     status: formData.get("status") || undefined,
+    brand_id: formData.get("brand_id") || undefined,
   });
 
   if (!parsed.success) {
@@ -48,6 +49,7 @@ export async function createProductAction(
       id: crypto.randomUUID(),
       workspace_id: workspaceId,
       ...parsed.data,
+      brand_id: parsed.data.brand_id || null,
     });
   } catch (error) {
     return {

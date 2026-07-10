@@ -6,6 +6,7 @@ const links = [
   { href: "/dashboard", label: "Dashboard", icon: IconGrid },
   { href: "/workspace", label: "Workspace", icon: IconFolder },
   { href: "/products", label: "Produtos", icon: IconBox },
+  { href: "/brands", label: "Marcas", icon: IconBadge },
   { href: "/offers", label: "Ofertas", icon: IconTag },
   { href: "/assets", label: "Assets", icon: IconImage },
   { href: "/landing-pages", label: "Landing Pages", icon: IconFile },
@@ -100,6 +101,15 @@ function IconBox(props: SVGProps<SVGSVGElement>) {
       <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z" />
       <path d="M3 8l9 5 9-5" />
       <path d="M12 13v8" />
+    </svg>
+  );
+}
+
+function IconBadge(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
+      <circle cx="12" cy="8" r="5" />
+      <path d="M8.5 12.5 7 21l5-3 5 3-1.5-8.5" />
     </svg>
   );
 }

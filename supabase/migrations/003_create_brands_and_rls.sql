@@ -1,4 +1,4 @@
--- SPC-0003: módulo Brands (CS-009)
+-- SPC-0003: modulo Brands (CS-009)
 -- Ver cc-engineering-framework/artifacts/specifications/0003-brands.md
 
 create table if not exists public.brands (
