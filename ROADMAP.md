@@ -66,7 +66,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 
 1. **CS-008 — Products** — **Concluído**. `features/products/` completo (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Nenhuma migração nova — reaproveita `products` + `products_member_all` já aplicados desde CS-007. Testado end-to-end: produto criado, persistido e listado com sucesso.
 2. **CS-009 — Brands** — **Concluído**. Migração `003_create_brands_and_rls.sql` aplicada no Supabase. Testado end-to-end: marca criada, produto pré-existente (`INSOLE BIOHACKING FIR POWER®`) permaneceu intacto após a migração aditiva, seletor de marca populado corretamente no `ProductForm`, novo produto criado com marca associada, edição do produto original funcionando sem regressão.
-3. **CS-010 — Offer Engine** — **Especificado** (SPC-0004). Schema novo (`offers`), CRUD manual completo, primeiro Prompt (`PR-0001`) conforme STD-0007 0.2.0. Achado: nenhum provedor de IA configurado — geração real fica como função isolada (stub) até decisão de provedor. Próximo a virar código.
+3. **CS-010 — Offer Engine** — **Concluído (código)**. Migração `004_create_offers_and_rls.sql`, `features/offer-engine/` completo, `prompts/offer-copy.md` (`PR-0001`, status `Ready` conforme STD-0007 0.2.0), página `app/(app)/offers/page.tsx` com botão "Gerar rascunho" (stub manual, sem IA real ainda). Pendente: aplicar migração no Supabase e testar end-to-end.
 4. Landing Page Engine
 5. Creative Engine
 6. Video Script Engine
@@ -76,7 +76,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 10. Analytics Engine
 11. Quality Engine + Prompt Lab
 
-**Status:** CS-008 Done (testado end-to-end); CS-009 Done (testado end-to-end); CS-010 In Progress (Specification pronta, código a iniciar); demais Planned
+**Status:** CS-008 Done (testado end-to-end); CS-009 Done (testado end-to-end); CS-010 In Progress (código completo, pendente aplicar migração e testar); demais Planned
 
 ## Transversais — sem data fixa
 
