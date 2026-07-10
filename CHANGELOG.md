@@ -12,6 +12,12 @@
 
 - Bug de RLS no insert de `workspaces` (linha não visível no `RETURNING` antes de existir o vínculo em `workspace_members`). Corrigido gerando `id` no cliente e removendo `.select().single()` do insert.
 
+## [Unreleased] - 2026-07-10 (2)
+
+### Added
+
+- CS-008 — módulo Products completo (SPC-0002): `features/products/` (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Reaproveita schema e RLS de `products` já existentes desde CS-007, sem migração nova.
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed
