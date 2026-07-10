@@ -62,21 +62,21 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 
 **Objetivo:** expandir para os demais módulos do produto. Cada um exige uma Specification (via `cc-engineering-framework`) antes de virar código.
 
-### Candidatos (ordem sugerida, não fechada)
+### Ordem confirmada (por dependência de schema, ver DP-007 em cc-engineering-framework)
 
-- Products (mesmo padrão em camadas do Workspace)
-- Brands
-- Offer Engine
-- Landing Page Engine
-- Creative Engine
-- Video Script Engine
-- Marketplace Engine (Shopee, Mercado Livre, Amazon)
-- Email/WhatsApp Engine
-- Publishing Engine (provisionamento Instagram/TikTok/TikTok Shop/YouTube)
-- Analytics Engine
-- Quality Engine + Prompt Lab
+1. **CS-008 — Products** — **Especificado** (SPC-0002). Schema e RLS já existem desde a migration 002; sem achado bloqueante. Próximo a virar código.
+2. Brands — exige schema novo (tabela nova + `brand_id` aditivo em `products`)
+3. Offer Engine — consome Products e Brands; primeiro caso real de STD-0007
+4. Landing Page Engine
+5. Creative Engine
+6. Video Script Engine
+7. Marketplace Engine (Shopee, Mercado Livre, Amazon)
+8. Email/WhatsApp Engine
+9. Publishing Engine (provisionamento Instagram/TikTok/TikTok Shop/YouTube)
+10. Analytics Engine
+11. Quality Engine + Prompt Lab
 
-**Status:** Planned
+**Status:** CS-008 In Progress (Specification pronta, código a iniciar); demais Planned
 
 ## Transversais — sem data fixa
 
@@ -92,3 +92,4 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 |------|-----------|
 | 2026-07-09 | Primeira versão, consolidando a análise de fases A a E |
 | 2026-07-10 | CS-007 reconciliado para Done: autenticação, RLS e CRUD completo confirmados end-to-end |
+| 2026-07-10 | CS-008 (Products) especificado via SPC-0002; ordem de CS-008+ confirmada por dependência de schema |
