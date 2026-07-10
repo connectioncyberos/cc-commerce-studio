@@ -65,7 +65,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 ### Ordem confirmada (por dependência de schema, ver DP-007 em cc-engineering-framework)
 
 1. **CS-008 — Products** — **Concluído**. `features/products/` completo (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Nenhuma migração nova — reaproveita `products` + `products_member_all` já aplicados desde CS-007. Testado end-to-end: produto criado, persistido e listado com sucesso.
-2. **CS-009 — Brands** — **Concluído (código)**. Migração `003_create_brands_and_rls.sql` (tabela `brands` + RLS + `brand_id` aditivo em `products`), `features/brands/` completo, página `app/(app)/brands/page.tsx`, seletor de marca (opcional) integrado ao `ProductForm`, nova entrada "Marcas" no Sidebar. Pendente: aplicar a migração no Supabase e testar end-to-end.
+2. **CS-009 — Brands** — **Concluído**. Migração `003_create_brands_and_rls.sql` aplicada no Supabase. Testado end-to-end: marca criada, produto pré-existente (`INSOLE BIOHACKING FIR POWER®`) permaneceu intacto após a migração aditiva, seletor de marca populado corretamente no `ProductForm`, novo produto criado com marca associada, edição do produto original funcionando sem regressão.
 3. Offer Engine — consome Products e Brands; primeiro caso real de STD-0007
 4. Landing Page Engine
 5. Creative Engine
@@ -76,7 +76,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 10. Analytics Engine
 11. Quality Engine + Prompt Lab
 
-**Status:** CS-008 Done (testado end-to-end); CS-009 In Progress (código completo, pendente aplicar migração e testar); demais Planned
+**Status:** CS-008 Done (testado end-to-end); CS-009 Done (testado end-to-end); demais Planned
 
 ## Transversais — sem data fixa
 
@@ -97,3 +97,4 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-10 | CS-008 (Products) reconciliado para Done: testado end-to-end (criar/listar produto confirmado) |
 | 2026-07-10 | CS-009 (Brands) especificado via SPC-0003 |
 | 2026-07-10 | CS-009 (Brands) implementado: migração 003, features/brands/ completo, ProductForm integrado, Sidebar atualizado |
+| 2026-07-10 | CS-009 (Brands) reconciliado para Done: testado end-to-end, sem regressão em produtos existentes |
