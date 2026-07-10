@@ -37,17 +37,24 @@ Resultado esperado: `nothing to commit, working tree clean`.
 
 **Objetivo:** salvar Workspace no Supabase usando o formulário, com isolamento multi-tenant real.
 
+**Especificação:** `cc-engineering-framework/artifacts/specifications/0001-workspace-persistence.md` (SPC-0001)
+
+### Achado bloqueante (2026-07-10)
+
+Não existe autenticação implementada (`lib/auth/` vazio, `@supabase/ssr` não instalado, cliente Supabase só com chave anônima). `workspace_members` + RLS por usuário não funcionam sem isso. Decisão pendente do usuário: Opção A (autenticação real agora) ou Opção B (placeholder de usuário único, adiando multi-tenant real). Ver SPC-0001, seção 4.1.
+
 ### Entregáveis
 
-- CS-007.0 — `workspace_members` + políticas de RLS no Supabase (pré-requisito, antes de gravar qualquer dado real)
-- CS-007.1 — Server Action de criação de Workspace
-- CS-007.2 — Validação com Zod ligada ao formulário
-- CS-007.3 — React Hook Form no `WorkspaceForm`
-- CS-007.4 — Insert real no Supabase
-- CS-007.5 — Listagem dinâmica (`list-workspaces` ligado à UI)
-- CS-007.6 — CRUD completo (create/read/update/delete) ponta a ponta
+- CS-007.-1 — Autenticação básica (Supabase Auth + `@supabase/ssr`) — **Concluído (código)**: `lib/supabase/server.ts`, `lib/supabase/middleware.ts`, `middleware.ts`, `features/auth/` (sign-in/sign-up/sign-out + `LoginForm`), guard em `app/(app)/layout.tsx`, botão Sair no `Topbar`. Falta rodar `npm install @supabase/ssr`.
+- CS-007.0 — `workspace_members` + políticas de RLS no Supabase — **Concluído (código)**: `supabase/migrations/002_create_workspace_members_and_rls.sql`. Falta aplicar no Supabase.
+- CS-007.1 — Server Action de criação de Workspace — **Concluído**: `"use server"` adicionado, usa cliente server-side, insere `workspace_members` como `owner`.
+- CS-007.2 — Validação com Zod ligada ao formulário — **Concluído** (schema já existia e está correto).
+- CS-007.3 — Corrigir `WorkspaceForm` — **Concluído**: agora usa `useFormState`/`useFormStatus` (React 18, compatível com ADR-0001), botão `type="submit"`.
+- CS-007.4 — Insert real no Supabase — **Concluído (código)**, pendente de teste após aplicar a migration.
+- CS-007.5 — Listagem dinâmica — **Concluído**: `WorkspacePage` agora é Server Component async chamando `listWorkspacesQuery()`.
+- CS-007.6 — CRUD completo — **Concluído**: `WorkspaceCard` ganhou edição inline e exclusão com confirmação, chamando as Server Actions e forçando `router.refresh()` para atualizar a lista sem reload manual.
 
-**Status:** Planned
+**Status:** In Progress — falta rodar `npm install`, aplicar a migration, e testar end-to-end
 
 ## CS-008+ — Módulos seguintes (ainda sem Specification)
 

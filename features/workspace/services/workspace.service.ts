@@ -1,11 +1,13 @@
-import { supabase } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import type {
   CreateWorkspaceInput,
   UpdateWorkspaceInput,
   Workspace,
 } from "../types/workspace.types";
 
-export async function listWorkspaces(): Promise<Workspace[]> {
+export async function listWorkspaces(
+  supabase: SupabaseClient,
+): Promise<Workspace[]> {
   const { data, error } = await supabase
     .from("workspaces")
     .select("*")
@@ -18,7 +20,10 @@ export async function listWorkspaces(): Promise<Workspace[]> {
   return data ?? [];
 }
 
-export async function getWorkspaceById(id: string): Promise<Workspace | null> {
+export async function getWorkspaceById(
+  supabase: SupabaseClient,
+  id: string,
+): Promise<Workspace | null> {
   const { data, error } = await supabase
     .from("workspaces")
     .select("*")
@@ -32,23 +37,27 @@ export async function getWorkspaceById(id: string): Promise<Workspace | null> {
   return data;
 }
 
+/**
+ * Insere o Workspace SEM pedir a linha de volta (sem RETURNING).
+ * Motivo: logo após o insert, ainda não existe o vínculo em
+ * workspace_members — a política de SELECT de workspaces exige esse
+ * vínculo, então pedir a linha de volta nesse momento falha por RLS
+ * (Postgres nega "visibilidade" da linha recém-criada). O id é gerado
+ * no chamador e passado explicitamente para não depender do RETURNING.
+ */
 export async function createWorkspace(
-  input: CreateWorkspaceInput,
-): Promise<Workspace> {
-  const { data, error } = await supabase
-    .from("workspaces")
-    .insert(input)
-    .select("*")
-    .single();
+  supabase: SupabaseClient,
+  input: CreateWorkspaceInput & { id: string },
+): Promise<void> {
+  const { error } = await supabase.from("workspaces").insert(input);
 
   if (error) {
     throw new Error(error.message);
   }
-
-  return data;
 }
 
 export async function updateWorkspace(
+  supabase: SupabaseClient,
   id: string,
   input: UpdateWorkspaceInput,
 ): Promise<Workspace> {
@@ -66,7 +75,10 @@ export async function updateWorkspace(
   return data;
 }
 
-export async function deleteWorkspace(id: string): Promise<void> {
+export async function deleteWorkspace(
+  supabase: SupabaseClient,
+  id: string,
+): Promise<void> {
   const { error } = await supabase.from("workspaces").delete().eq("id", id);
 
   if (error) {
