@@ -65,7 +65,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 ### Ordem confirmada (por dependência de schema, ver DP-007 em cc-engineering-framework)
 
 1. **CS-008 — Products** — **Concluído**. `features/products/` completo (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Nenhuma migração nova — reaproveita `products` + `products_member_all` já aplicados desde CS-007. Testado end-to-end: produto criado, persistido e listado com sucesso.
-2. Brands — exige schema novo (tabela nova + `brand_id` aditivo em `products`)
+2. **CS-009 — Brands** — **Especificado** (SPC-0003). Schema novo (`brands`) + migração aditiva em `products` (`brand_id` nullable, sem regressão em CS-008). Próximo a virar código.
 3. Offer Engine — consome Products e Brands; primeiro caso real de STD-0007
 4. Landing Page Engine
 5. Creative Engine
@@ -76,7 +76,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 10. Analytics Engine
 11. Quality Engine + Prompt Lab
 
-**Status:** CS-008 Done (testado end-to-end); demais Planned
+**Status:** CS-008 Done (testado end-to-end); CS-009 In Progress (Specification pronta, código a iniciar); demais Planned
 
 ## Transversais — sem data fixa
 
@@ -95,3 +95,4 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-10 | CS-008 (Products) especificado via SPC-0002; ordem de CS-008+ confirmada por dependência de schema |
 | 2026-07-10 | CS-008 (Products) implementado: features/products/ completo, página criada, sem migração nova |
 | 2026-07-10 | CS-008 (Products) reconciliado para Done: testado end-to-end (criar/listar produto confirmado) |
+| 2026-07-10 | CS-009 (Brands) especificado via SPC-0003 |
