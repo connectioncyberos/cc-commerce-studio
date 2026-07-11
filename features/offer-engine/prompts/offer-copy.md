@@ -1,10 +1,10 @@
 ---
 id: PR-0001
 title: Geração de copy de oferta a partir de Product + Brand
-target_model: a definir (ver SPC-0004, seção 4.1 — nenhum provedor de IA configurado ainda)
+target_model: Gemini 3.1 Flash-Lite (Google AI Studio, free tier)
 objective: Gerar um texto de oferta de venda persuasivo a partir dos dados de um produto e do tom de voz de uma marca.
-version: 0.1.0
-status: Ready
+version: 0.2.0
+status: Active
 ---
 
 # PR-0001 — Geração de copy de oferta
@@ -54,3 +54,5 @@ Garanta a sua agora e transforme cada passo em mais liberdade.
 | Versão | Data | Alteração | Autor |
 |--------|------|-----------|-------|
 | 0.1.0 | 2026-07-10 | Primeira versão, status Ready (checklist STD-0007 §4.7 cumprido; falta apenas provedor de IA para avançar a Active) | Claude |
+| 0.2.0 | 2026-07-10 | Status promovido para Active — ligado ao Gemini 2.5 Flash-Lite via `@google/genai` em `offer.service.ts` | Claude |
+| 0.2.1 | 2026-07-10 | Corrigido para `gemini-3.1-flash-lite` — 2.5 Flash-Lite foi descontinuado para novos usuários | Claude |

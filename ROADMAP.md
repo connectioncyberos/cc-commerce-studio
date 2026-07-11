@@ -78,7 +78,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 
 **Decisão de escopo (DP-010, cc-engineering-framework, 2026-07-10):** os itens 4 a 11 ficam **fora do escopo de "finalizar o projeto"** nesta rodada — permanecem Planned, sem Specification, para uma fase futura. O MVP fechado é CS-007 a CS-010 com IA real ligada ao Offer Engine.
 
-**Status:** CS-008 Done (testado end-to-end); CS-009 Done (testado end-to-end); CS-010 Done (testado end-to-end, pendente IA real — ver DP-010); demais Planned (fora do escopo do MVP)
+**Status:** CS-008 Done (testado end-to-end); CS-009 Done (testado end-to-end); CS-010 Done (IA real ligada e testada — Gemini 3.1 Flash-Lite, `PR-0001` Active); demais Planned (fora do escopo do MVP)
 
 ## Transversais — sem data fixa
 
@@ -104,3 +104,4 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-10 | CS-010 (Offer Engine) implementado: migração 004, features/offer-engine/ completo, PR-0001, página criada |
 | 2026-07-10 | CS-010 (Offer Engine) reconciliado para Done: testado end-to-end (gerar rascunho + salvar oferta confirmado) |
 | 2026-07-10 | Escopo do MVP confirmado pelo usuário (DP-010): CS-011 a CS-018 (Landing Page a Quality Engine) ficam fora do escopo de "finalizar" por agora |
+| 2026-07-10 | Gemini API (gemini-3.1-flash-lite) ligado a generateOfferCopy(); testado end-to-end com copy real gerada e oferta salva |

@@ -1,5 +1,15 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { GoogleGenAI } from "@google/genai";
 import type { CreateOfferInput, Offer, UpdateOfferInput } from "../types/offer.types";
+
+/**
+ * PR-0001 (Active): cliente do Gemini, criado só se GEMINI_API_KEY existir.
+ * Se a chave não estiver configurada, generateOfferCopy() cai no rascunho
+ * manual — nenhum outro ponto do módulo quebra por falta de chave.
+ */
+const genAI = process.env.GEMINI_API_KEY
+  ? new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
+  : null;
 
 export async function listOffers(
   supabase: SupabaseClient,
@@ -85,21 +95,49 @@ export async function deleteOffer(supabase: SupabaseClient, id: string): Promise
 }
 
 /**
- * SPC-0004 (Não Escopo): nenhuma chamada real de IA está ligada aqui.
- * Nenhum provedor foi escolhido (ver .env.example — só chaves do Supabase).
- * Esta função existe isolada para que, quando um provedor for decidido,
- * apenas esta implementação precise mudar — nenhum outro ponto do módulo
- * depende de como a geração acontece por baixo.
+ * PR-0001 (features/offer-engine/prompts/offer-copy.md) — se o template do
+ * prompt mudar naquele arquivo, atualizar este texto junto, para os dois
+ * ficarem sincronizados.
+ */
+function buildOfferPrompt(input: {
+  product: { name: string; description: string | null };
+  brand?: { tone_of_voice: string | null } | null;
+}): string {
+  const tone = input.brand?.tone_of_voice ?? "neutro e profissional";
+
+  return `Você é um redator publicitário especializado em ofertas de venda diretas.
+
+Produto: ${input.product.name}
+Descrição do produto: ${input.product.description ?? "Não informada."}
+Tom de voz da marca: ${tone}
+
+Escreva uma oferta de venda persuasiva para este produto, respeitando o tom de voz
+indicado. Use entre 2 e 4 parágrafos curtos. Termine com uma chamada para ação clara.
+Não use listas nem formatação markdown — apenas texto corrido.`;
+}
+
+/**
+ * PR-0001: Active quando GEMINI_API_KEY está configurada; cai para rascunho
+ * manual (mesmo comportamento de antes) se a chave não existir, para não
+ * quebrar ambientes de desenvolvimento sem a chave configurada.
  */
 export async function generateOfferCopy(input: {
   product: { name: string; description: string | null };
   brand?: { tone_of_voice: string | null } | null;
 }): Promise<string> {
-  const tone = input.brand?.tone_of_voice ?? "neutro e profissional";
+  if (!genAI) {
+    const tone = input.brand?.tone_of_voice ?? "neutro e profissional";
+    return (
+      `[Rascunho manual — GEMINI_API_KEY não configurada, ver PR-0001]\n\n` +
+      `Escreva aqui a oferta para "${input.product.name}", usando tom de voz "${tone}". ` +
+      `Consulte features/offer-engine/prompts/offer-copy.md para o template completo.`
+    );
+  }
 
-  return (
-    `[Rascunho manual — nenhum provedor de IA configurado ainda, ver PR-0001]\n\n` +
-    `Escreva aqui a oferta para "${input.product.name}", usando tom de voz "${tone}". ` +
-    `Consulte features/offer-engine/prompts/offer-copy.md para o template completo.`
-  );
+  const response = await genAI.models.generateContent({
+    model: "gemini-3.1-flash-lite",
+    contents: buildOfferPrompt(input),
+  });
+
+  return response.text ?? "";
 }
