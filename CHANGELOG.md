@@ -65,6 +65,19 @@ MVP fechado: Workspace (CS-007), Products (CS-008), Brands (CS-009), Offer Engin
 
 Testado end-to-end: landing page criada com slug `oferta-001-insole`, status "Publicada", conteúdo pré-preenchido a partir da oferta com copy gerada por IA, rota pública acessível sem login em aba anônima.
 
+## [Unreleased] - 2026-07-11 (2)
+
+### Added
+
+- CS-012 — módulo Video Script Engine completo (SPC-0006): migração `006_create_video_scripts_and_rls.sql` (tabela `video_scripts` + RLS `video_scripts_member_all`), `features/video-script-engine/` completo, segundo Prompt (`PR-0002`, `features/video-script-engine/prompts/video-script.md`, status `Draft`), página `app/(app)/video-scripts/page.tsx`, entrada "Roteiros de Vídeo" no Sidebar.
+- `generateVideoScript()` já ligada ao Gemini 3.1 Flash-Lite real (reaproveita `GEMINI_API_KEY` já configurada) — nenhuma conta/API externa nova, conforme decisão DP-012.
+
+Testado end-to-end: roteiro gerado a partir da oferta "INSOLE BIOHACKING" com cenas Gancho/Problema/Solução/Prova/Chamada para ação, texto real do Gemini, salvo com sucesso. `PR-0002` promovido de Draft para Active.
+
+### Changed
+
+- STD-0007 (cc-engineering-framework) promovido de 0.3.0 (Draft) para 1.0.0 (Approved): PR-0002 seguiu o Standard sem exigir nenhuma expansão nova, confirmando que os critérios generalizam entre Engines diferentes.
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed
