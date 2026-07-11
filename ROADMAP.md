@@ -67,7 +67,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 1. **CS-008 — Products** — **Concluído**. `features/products/` completo (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Nenhuma migração nova — reaproveita `products` + `products_member_all` já aplicados desde CS-007. Testado end-to-end: produto criado, persistido e listado com sucesso.
 2. **CS-009 — Brands** — **Concluído**. Migração `003_create_brands_and_rls.sql` aplicada no Supabase. Testado end-to-end: marca criada, produto pré-existente (`INSOLE BIOHACKING FIR POWER®`) permaneceu intacto após a migração aditiva, seletor de marca populado corretamente no `ProductForm`, novo produto criado com marca associada, edição do produto original funcionando sem regressão.
 3. **CS-010 — Offer Engine** — **Concluído**. Migração `004_create_offers_and_rls.sql` aplicada. Testado end-to-end: "Gerar rascunho" preencheu a copy referenciando o `PR-0001`, oferta salva e listada corretamente.
-4. Landing Page Engine
+4. **CS-011 — Landing Page Engine** — **Concluído (código)**. Migração `005_create_landing_pages_and_rls.sql`, `features/landing-pages/` completo, página de gestão `app/(app)/landing-pages/page.tsx`, página pública `app/lp/[slug]/page.tsx` (fora do grupo `(app)`, sem login). Pendente: aplicar migração no Supabase e testar end-to-end (incluindo acesso público em aba anônima).
 5. Creative Engine
 6. Video Script Engine
 7. Marketplace Engine (Shopee, Mercado Livre, Amazon)
@@ -76,9 +76,9 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 10. Analytics Engine
 11. Quality Engine + Prompt Lab
 
-**Decisão de escopo (DP-010, cc-engineering-framework, 2026-07-10):** os itens 4 a 11 ficam **fora do escopo de "finalizar o projeto"** nesta rodada — permanecem Planned, sem Specification, para uma fase futura. O MVP fechado é CS-007 a CS-010 com IA real ligada ao Offer Engine.
+**Decisão de escopo (DP-010, cc-engineering-framework, 2026-07-10):** o MVP fechado é CS-007 a CS-010 com IA real ligada ao Offer Engine (ver Release-0002). A retomada dos módulos restantes (DP-011 em diante) começou por CS-011 (Landing Page Engine).
 
-**Status:** CS-008 Done (testado end-to-end); CS-009 Done (testado end-to-end); CS-010 Done (IA real ligada e testada — Gemini 3.1 Flash-Lite, `PR-0001` Active); demais Planned (fora do escopo do MVP)
+**Status:** CS-008 Done; CS-009 Done; CS-010 Done (IA real ligada e testada); CS-011 In Progress (código completo, pendente aplicar migração e testar); demais Planned
 
 ## Transversais — sem data fixa
 

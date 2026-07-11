@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "@/components/ui";
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
@@ -17,9 +20,9 @@ export default function HomePage() {
           Transforme produtos em ativos digitais prontos para venda com Inteligência Artificial.
         </p>
 
-        <div className="mt-7 rounded-md border border-neutral-800 bg-neutral-900 p-4 text-sm text-neutral-400 hover:border-emerald-500/50">
-          <strong className="text-neutral-100">Sprint 001:</strong> Bootstrap técnico alinhado ao padrão visual ConnectionCyber.
-        </div>
+        <Link href="/login" className="mt-8">
+          <Button type="button">Entrar</Button>
+        </Link>
       </section>
     </main>
   );
