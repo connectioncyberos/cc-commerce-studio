@@ -99,3 +99,4 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-10 | CS-009 (Brands) implementado: migração 003, features/brands/ completo, ProductForm integrado, Sidebar atualizado |
 | 2026-07-10 | CS-009 (Brands) reconciliado para Done: testado end-to-end, sem regressão em produtos existentes |
 | 2026-07-10 | CS-010 (Offer Engine) especificado via SPC-0004; STD-0007 expandido para 0.2.0 |
+| 2026-07-10 | CS-010 (Offer Engine) implementado: migração 004, features/offer-engine/ completo, PR-0001, página criada |
