@@ -82,11 +82,11 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 
 ## Transversais — sem data fixa
 
-- Testes automatizados (`tests/` vazio até o momento)
-- CI (hoje só há deploy automático via Vercel; nenhum workflow de GitHub Actions decidido)
+- Testes automatizados (`tests/` vazio até o momento) — **decisão confirmada (DP-010, item 7):** ficam fora do escopo do MVP, backlog consciente, não esquecimento. Retomar quando houver necessidade real (ex.: antes de um ambiente de produção real).
+- CI (hoje só há deploy automático via Vercel; nenhum workflow de GitHub Actions decidido) — mesma decisão acima.
 - Ambientes stage/prod no Supabase (adiado conscientemente até haver necessidade real)
 
-**Status:** Backlog
+**Status:** Backlog (consciente, não pendência esquecida)
 
 ## Histórico de alterações
 

@@ -45,6 +45,14 @@
 
 - `generateOfferCopy()`/`generateOfferCopyAction()` agora tratam explicitamente resposta vazia/bloqueada pelo filtro de segurança e falhas de rede/cota do Gemini, conforme STD-0007 §4.8 (0.3.0).
 
+## [Unreleased] - 2026-07-10 (7)
+
+### Decided
+
+- Testes automatizados e CI ficam fora do escopo do MVP — backlog consciente, ver `cc-engineering-framework/releases/Release-0002.md`.
+
+MVP fechado: Workspace (CS-007), Products (CS-008), Brands (CS-009), Offer Engine com IA real (CS-010).
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed
