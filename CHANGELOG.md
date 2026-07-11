@@ -39,6 +39,12 @@
 
 - Escopo do MVP confirmado (ver DP-010 em cc-engineering-framework): próximos passos são ligar IA real ao Offer Engine; demais 8 módulos do CS-008+ ficam fora do escopo por agora.
 
+## [Unreleased] - 2026-07-10 (6)
+
+### Changed
+
+- `generateOfferCopy()`/`generateOfferCopyAction()` agora tratam explicitamente resposta vazia/bloqueada pelo filtro de segurança e falhas de rede/cota do Gemini, conforme STD-0007 §4.8 (0.3.0).
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed

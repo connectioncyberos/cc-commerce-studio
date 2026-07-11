@@ -134,10 +134,35 @@ export async function generateOfferCopy(input: {
     );
   }
 
-  const response = await genAI.models.generateContent({
-    model: "gemini-3.1-flash-lite",
-    contents: buildOfferPrompt(input),
-  });
+  let response;
 
-  return response.text ?? "";
+  try {
+    response = await genAI.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: buildOfferPrompt(input),
+    });
+  } catch (error) {
+    // STD-0007 §4.8 — falha de rede/cota/indisponibilidade do provedor
+    // precisa virar um erro tratável, não uma exceção não tratada.
+    throw new Error(
+      error instanceof Error
+        ? `Falha ao chamar o provedor de IA: ${error.message}`
+        : "Falha ao chamar o provedor de IA.",
+    );
+  }
+
+  const text = response.text;
+
+  if (!text) {
+    // STD-0007 §4.8 — resposta vazia/bloqueada pelo filtro de segurança
+    // nunca deve virar uma string vazia silenciosa para o usuário.
+    const blockReason = response.candidates?.[0]?.finishReason;
+    throw new Error(
+      blockReason
+        ? `O provedor de IA não retornou texto (motivo: ${blockReason}).`
+        : "O provedor de IA não retornou nenhum texto.",
+    );
+  }
+
+  return text;
 }

@@ -7,9 +7,10 @@ import { generateOfferCopy } from "../services/offer.service";
 
 /**
  * Server Action isolada (SPC-0004, 4.5): a UI chama esta action para
- * "gerar" a copy. Hoje ela devolve um rascunho manual (ver
- * offer.service.ts::generateOfferCopy), sem chamada real de IA — quando
- * um provedor for escolhido, só esta cadeia precisa mudar.
+ * "gerar" a copy. Desde PR-0001 v0.2.0, chama o Gemini 3.1 Flash-Lite de
+ * verdade (ver offer.service.ts::generateOfferCopy); erros de rede, cota
+ * ou bloqueio de segurança chegam aqui via catch e viram `error` tratável
+ * pela UI (STD-0007 §4.8).
  */
 export async function generateOfferCopyAction(
   productId: string,
