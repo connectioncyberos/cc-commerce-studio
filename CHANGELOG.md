@@ -53,6 +53,18 @@
 
 MVP fechado: Workspace (CS-007), Products (CS-008), Brands (CS-009), Offer Engine com IA real (CS-010).
 
+## [Unreleased] - 2026-07-11
+
+### Added
+
+- CS-011 — módulo Landing Page Engine completo (SPC-0005): migração `005_create_landing_pages_and_rls.sql` (tabela `landing_pages` + RLS `landing_pages_member_all` + `landing_pages_select_public_published`), `features/landing-pages/` completo, página de gestão `app/(app)/landing-pages/page.tsx`, rota pública `app/lp/[slug]/page.tsx` (fora do grupo `(app)`, sem exigir login).
+
+### Fixed
+
+- Migração 005 não estava aplicada no Supabase, causando `Could not find the table 'public.landing_pages' in the schema cache` tanto localmente quanto em produção. Corrigido aplicando a migração via SQL Editor.
+
+Testado end-to-end: landing page criada com slug `oferta-001-insole`, status "Publicada", conteúdo pré-preenchido a partir da oferta com copy gerada por IA, rota pública acessível sem login em aba anônima.
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed

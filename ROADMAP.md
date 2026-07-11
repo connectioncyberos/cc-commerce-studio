@@ -67,7 +67,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 1. **CS-008 — Products** — **Concluído**. `features/products/` completo (types, validations, services, queries, mutations, actions, components), página `app/(app)/products/page.tsx`. Nenhuma migração nova — reaproveita `products` + `products_member_all` já aplicados desde CS-007. Testado end-to-end: produto criado, persistido e listado com sucesso.
 2. **CS-009 — Brands** — **Concluído**. Migração `003_create_brands_and_rls.sql` aplicada no Supabase. Testado end-to-end: marca criada, produto pré-existente (`INSOLE BIOHACKING FIR POWER®`) permaneceu intacto após a migração aditiva, seletor de marca populado corretamente no `ProductForm`, novo produto criado com marca associada, edição do produto original funcionando sem regressão.
 3. **CS-010 — Offer Engine** — **Concluído**. Migração `004_create_offers_and_rls.sql` aplicada. Testado end-to-end: "Gerar rascunho" preencheu a copy referenciando o `PR-0001`, oferta salva e listada corretamente.
-4. **CS-011 — Landing Page Engine** — **Concluído (código)**. Migração `005_create_landing_pages_and_rls.sql`, `features/landing-pages/` completo, página de gestão `app/(app)/landing-pages/page.tsx`, página pública `app/lp/[slug]/page.tsx` (fora do grupo `(app)`, sem login). Pendente: aplicar migração no Supabase e testar end-to-end (incluindo acesso público em aba anônima).
+4. **CS-011 — Landing Page Engine** — **Concluído**. Migração `005_create_landing_pages_and_rls.sql` aplicada no Supabase. Testado end-to-end: landing page "PALMILHA INSOLE" criada com slug `oferta-001-insole` e status "Publicada", conteúdo pré-preenchido a partir da oferta `INSOLE` (copy gerada por IA real), rota pública `/lp/oferta-001-insole` acessível sem login em aba anônima (local).
 5. Creative Engine
 6. Video Script Engine
 7. Marketplace Engine (Shopee, Mercado Livre, Amazon)
@@ -78,7 +78,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 
 **Decisão de escopo (DP-010, cc-engineering-framework, 2026-07-10):** o MVP fechado é CS-007 a CS-010 com IA real ligada ao Offer Engine (ver Release-0002). A retomada dos módulos restantes (DP-011 em diante) começou por CS-011 (Landing Page Engine).
 
-**Status:** CS-008 Done; CS-009 Done; CS-010 Done (IA real ligada e testada); CS-011 In Progress (código completo, pendente aplicar migração e testar); demais Planned
+**Status:** CS-008 Done; CS-009 Done; CS-010 Done (IA real ligada e testada); CS-011 Done (migração aplicada, testado end-to-end incluindo acesso público); demais Planned
 
 ## Transversais — sem data fixa
 
@@ -105,3 +105,5 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-10 | CS-010 (Offer Engine) reconciliado para Done: testado end-to-end (gerar rascunho + salvar oferta confirmado) |
 | 2026-07-10 | Escopo do MVP confirmado pelo usuário (DP-010): CS-011 a CS-018 (Landing Page a Quality Engine) ficam fora do escopo de "finalizar" por agora |
 | 2026-07-10 | Gemini API (gemini-3.1-flash-lite) ligado a generateOfferCopy(); testado end-to-end com copy real gerada e oferta salva |
+| 2026-07-11 | CS-011 (Landing Page Engine) implementado: migração 005, features/landing-pages/ completo, página de gestão e rota pública `/lp/[slug]` criadas |
+| 2026-07-11 | CS-011 reconciliado para Done: migração 005 aplicada no Supabase, testado end-to-end (criação, preenchimento automático de conteúdo, acesso público sem login em aba anônima) |
