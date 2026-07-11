@@ -33,6 +33,12 @@
 - CS-010 — módulo Offer Engine completo (SPC-0004): migração `004_create_offers_and_rls.sql` (tabela `offers` + RLS `offers_member_all`), `features/offer-engine/` completo, primeiro Prompt (`PR-0001`, `features/offer-engine/prompts/offer-copy.md`, status `Ready` conforme STD-0007 0.2.0), página `app/(app)/offers/page.tsx`.
 - `generateOfferCopy()` isolada em `offer.service.ts` — hoje devolve rascunho manual; nenhum provedor de IA configurado ainda (ver SPC-0004, achado 4.1).
 
+## [Unreleased] - 2026-07-10 (5)
+
+### Changed
+
+- Escopo do MVP confirmado (ver DP-010 em cc-engineering-framework): próximos passos são ligar IA real ao Offer Engine; demais 8 módulos do CS-008+ ficam fora do escopo por agora.
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed
