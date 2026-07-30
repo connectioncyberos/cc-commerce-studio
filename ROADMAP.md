@@ -85,7 +85,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 ## Transversais — sem data fixa
 
 - Testes automatizados (`tests/` vazio até o momento) — ainda backlog consciente (DP-010, item 7), mas com plano de execução mensurável: ver PBK-0001 (cc-engineering-framework), Fase 2 — teste de isolamento de RLS por tabela, antes do Billing Engine cobrar de terceiros.
-- CI — **Concluído (2026-07-11, PBK-0001 Fase 0):** `.github/workflows/ci.yml` rodando `npm run typecheck` + `npm run build` a cada push/PR. Cobre tipos e build; não cobre teste automatizado ainda (ver item acima).
+- CI — **Concluído e confirmado (2026-07-11, PBK-0001 Fase 0):** `.github/workflows/ci.yml` rodando `npm run typecheck` + `npm run build` a cada push/PR. Primeiro run real (commit `0a3585a`) passou verde em 55s. Cobre tipos e build; não cobre teste automatizado ainda (ver item acima).
 - Link "Assets" e "Dashboard" quebrados no Sidebar — **Corrigido (2026-07-11, PBK-0001 Fase 0):** removidos do menu; nenhuma das duas rotas existe em `app/(app)/` e o login já redireciona para `/workspace`. Tabelas `projects`/`assets` (migração 001) permanecem no schema sem feature — decisão documentada em DP-015 (cc-engineering-framework), sem alteração destrutiva de banco.
 - Ambientes stage/prod no Supabase (adiado conscientemente até haver necessidade real)
 
