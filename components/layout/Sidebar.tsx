@@ -2,13 +2,15 @@ import Link from "next/link";
 import type { SVGProps } from "react";
 import { signOutAction } from "@/features/auth";
 
+// PBK-0001 (D2): "Dashboard" (/dashboard) e "Assets" (/assets) foram removidos
+// deste menu em 2026-07-11 — nenhuma das duas rotas existe em app/(app)/, e o
+// login já redireciona para /workspace. Ver DP-015 (cc-engineering-framework)
+// para o achado completo e a decisão sobre as tabelas projects/assets no schema.
 const links = [
-  { href: "/dashboard", label: "Dashboard", icon: IconGrid },
   { href: "/workspace", label: "Workspace", icon: IconFolder },
   { href: "/products", label: "Produtos", icon: IconBox },
   { href: "/brands", label: "Marcas", icon: IconBadge },
   { href: "/offers", label: "Ofertas", icon: IconTag },
-  { href: "/assets", label: "Assets", icon: IconImage },
   { href: "/landing-pages", label: "Landing Pages", icon: IconFile },
   { href: "/video-scripts", label: "Roteiros de Vídeo", icon: IconVideo },
 ];
@@ -77,17 +79,6 @@ export function Sidebar({ userEmail }: SidebarProps) {
   );
 }
 
-function IconGrid(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="7" rx="1" />
-      <rect x="3" y="14" width="7" height="7" rx="1" />
-      <rect x="14" y="14" width="7" height="7" rx="1" />
-    </svg>
-  );
-}
-
 function IconFolder(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
@@ -120,16 +111,6 @@ function IconTag(props: SVGProps<SVGSVGElement>) {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
       <path d="M20 12 12.5 19.5a2 2 0 0 1-2.8 0L4 13.8V4h9.8L20 10.2a2 2 0 0 1 0 2.8Z" />
       <circle cx="8.5" cy="8.5" r="1.2" />
-    </svg>
-  );
-}
-
-function IconImage(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <circle cx="9" cy="9" r="1.5" />
-      <path d="m3 17 5-5 4 4 3-3 6 6" />
     </svg>
   );
 }

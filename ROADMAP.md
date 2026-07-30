@@ -84,11 +84,12 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 
 ## Transversais — sem data fixa
 
-- Testes automatizados (`tests/` vazio até o momento) — **decisão confirmada (DP-010, item 7):** ficam fora do escopo do MVP, backlog consciente, não esquecimento. Retomar quando houver necessidade real (ex.: antes de um ambiente de produção real).
-- CI (hoje só há deploy automático via Vercel; nenhum workflow de GitHub Actions decidido) — mesma decisão acima.
+- Testes automatizados (`tests/` vazio até o momento) — ainda backlog consciente (DP-010, item 7), mas com plano de execução mensurável: ver PBK-0001 (cc-engineering-framework), Fase 2 — teste de isolamento de RLS por tabela, antes do Billing Engine cobrar de terceiros.
+- CI — **Concluído (2026-07-11, PBK-0001 Fase 0):** `.github/workflows/ci.yml` rodando `npm run typecheck` + `npm run build` a cada push/PR. Cobre tipos e build; não cobre teste automatizado ainda (ver item acima).
+- Link "Assets" e "Dashboard" quebrados no Sidebar — **Corrigido (2026-07-11, PBK-0001 Fase 0):** removidos do menu; nenhuma das duas rotas existe em `app/(app)/` e o login já redireciona para `/workspace`. Tabelas `projects`/`assets` (migração 001) permanecem no schema sem feature — decisão documentada em DP-015 (cc-engineering-framework), sem alteração destrutiva de banco.
 - Ambientes stage/prod no Supabase (adiado conscientemente até haver necessidade real)
 
-**Status:** Backlog (consciente, não pendência esquecida)
+**Status:** CI e link quebrado corrigidos (Fase 0 do PBK-0001 concluída); testes automatizados seguem em backlog consciente, com plano nas Fases 1-3 do PBK-0001
 
 ## Histórico de alterações
 
@@ -112,3 +113,4 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-11 | Ordem dos módulos restantes decidida pelo usuário (DP-012): Video Script Engine → Creative Engine → Analytics Engine |
 | 2026-07-11 | CS-012 (Video Script Engine) especificado via SPC-0006 e implementado: migração 006, features/video-script-engine/ completo, PR-0002 (Draft), página criada, Sidebar atualizado |
 | 2026-07-11 | CS-012 reconciliado para Done: migração 006 aplicada, testado end-to-end (roteiro gerado por IA real, salvo com sucesso); PR-0002 promovido a Active; STD-0007 promovido a 1.0.0 (Approved) em cc-engineering-framework |
+| 2026-07-11 | Auditoria arquitetural completa entregue e PBK-0001 escrito (cc-engineering-framework, DP-015); Fase 0 executada: CI criado (`.github/workflows/ci.yml`) e links quebrados "Dashboard"/"Assets" removidos do Sidebar |

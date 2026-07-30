@@ -78,6 +78,16 @@ Testado end-to-end: roteiro gerado a partir da oferta "INSOLE BIOHACKING" com ce
 
 - STD-0007 (cc-engineering-framework) promovido de 0.3.0 (Draft) para 1.0.0 (Approved): PR-0002 seguiu o Standard sem exigir nenhuma expansão nova, confirmando que os critérios generalizam entre Engines diferentes.
 
+## [Unreleased] - 2026-07-11 (3)
+
+### Added
+
+- `.github/workflows/ci.yml`: CI mínimo rodando `npm run typecheck` e `npm run build` a cada push/PR em `main` (PBK-0001 Fase 0, D1).
+
+### Fixed
+
+- Sidebar: removidos os itens "Dashboard" (`/dashboard`) e "Assets" (`/assets`), que apontavam para rotas inexistentes (404 real) — nenhuma das duas páginas existe em `app/(app)/`, e o login já redireciona para `/workspace`. Tabelas `projects`/`assets` (schema desde a migração 001) permanecem sem feature; decisão de manter (sem alteração destrutiva de banco) documentada em DP-015/PBK-0001 (cc-engineering-framework). (PBK-0001 Fase 0, D2)
+
 ## [0.1.0-alpha.3] - 2026-07-08
 
 ### Changed

@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  typecheck-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck (tsc --noEmit)
+        run: npm run typecheck
+
+      - name: Build (next build)
+        run: npm run build
+        env:
+          # PBK-0001 (D1): valores de placeholder só para o build passar no CI.
+          # Nenhuma chamada real de rede acontece durante "next build" — as
+          # rotas são renderizadas dinamicamente em runtime, não em build time.
+          # Nunca usar segredos reais aqui; segredos reais ficam só na Vercel.
+          NEXT_PUBLIC_SUPABASE_URL: "https://placeholder.supabase.co"
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: "placeholder-anon-key"
+          GEMINI_API_KEY: ""
