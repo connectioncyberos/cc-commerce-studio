@@ -70,7 +70,7 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 4. **CS-011 — Landing Page Engine** — **Concluído**. Migração `005_create_landing_pages_and_rls.sql` aplicada no Supabase. Testado end-to-end: landing page "PALMILHA INSOLE" criada com slug `oferta-001-insole` e status "Publicada", conteúdo pré-preenchido a partir da oferta `INSOLE` (copy gerada por IA real), rota pública `/lp/oferta-001-insole` acessível sem login em aba anônima (local).
 5. **CS-012 — Video Script Engine** — **Concluído**. Migração `006_create_video_scripts_and_rls.sql` aplicada no Supabase. Testado end-to-end: roteiro "INSOLE BIOHACKING" gerado via `PR-0002`/Gemini 3.1 Flash-Lite real, com cenas Gancho/Problema/Solução/Prova/Chamada para ação, salvo com sucesso. `PR-0002` promovido a Active; `PR-0002` sendo o segundo prompt real (de um Engine diferente) fez o STD-0007 avançar de 0.3.0 (Draft) para 1.0.0 (Approved) em cc-engineering-framework.
 6. Creative Engine — CS-013, em andamento (ver DP-013)
-7. **Diagnóstico Digital Engine (MPI)** — Planned. `SPC-0008` a escrever. Entra antes/em paralelo ao Creative Engine (DP-016). Auditar reaproveitamento de `projects`/`assets` (migração 001) antes de propor schema novo.
+7. **CS-014 — Diagnóstico Digital Engine (MPI)** — Especificado (`SPC-0008`, ver DP-017 em cc-engineering-framework). Reaproveita `projects` como ciclo/projeto do Workspace; `assets`/upload adiado até o Storage do Creative Engine existir. Código ainda não iniciado. Entra antes/em paralelo ao Creative Engine (DP-016).
 8. Marketplace Engine (Shopee, Mercado Livre, Amazon)
 9. Email/WhatsApp Engine — cobre o pilar Automação/CRM do MPI (DP-016)
 10. Publishing Engine (provisionamento Instagram/TikTok/TikTok Shop/YouTube)
@@ -118,3 +118,5 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 | 2026-07-11 | CS-012 (Video Script Engine) especificado via SPC-0006 e implementado: migração 006, features/video-script-engine/ completo, PR-0002 (Draft), página criada, Sidebar atualizado |
 | 2026-07-11 | CS-012 reconciliado para Done: migração 006 aplicada, testado end-to-end (roteiro gerado por IA real, salvo com sucesso); PR-0002 promovido a Active; STD-0007 promovido a 1.0.0 (Approved) em cc-engineering-framework |
 | 2026-07-11 | Auditoria arquitetural completa entregue e PBK-0001 escrito (cc-engineering-framework, DP-015); Fase 0 executada: CI criado (`.github/workflows/ci.yml`) e links quebrados "Dashboard"/"Assets" removidos do Sidebar |
+| 2026-08-01 | MPI incorporado ao Commerce Studio (DP-016): pilares do MPI mapeados para Engines existentes/planejados; CS-014 (Diagnóstico Digital Engine) e um futuro Tráfego Pago Engine adicionados à lista de módulos |
+| 2026-08-01 | CS-014 (Diagnóstico Digital Engine) especificado via SPC-0008 (DP-017, cc-engineering-framework): reaproveita `projects` como ciclo/projeto do Workspace; `assets`/upload adiado até o Storage do Creative Engine existir |
