@@ -69,18 +69,22 @@ Durante a implementação, surgiu um segundo bloqueio real: `insert` em `workspa
 3. **CS-010 — Offer Engine** — **Concluído**. Migração `004_create_offers_and_rls.sql` aplicada. Testado end-to-end: "Gerar rascunho" preencheu a copy referenciando o `PR-0001`, oferta salva e listada corretamente.
 4. **CS-011 — Landing Page Engine** — **Concluído**. Migração `005_create_landing_pages_and_rls.sql` aplicada no Supabase. Testado end-to-end: landing page "PALMILHA INSOLE" criada com slug `oferta-001-insole` e status "Publicada", conteúdo pré-preenchido a partir da oferta `INSOLE` (copy gerada por IA real), rota pública `/lp/oferta-001-insole` acessível sem login em aba anônima (local).
 5. **CS-012 — Video Script Engine** — **Concluído**. Migração `006_create_video_scripts_and_rls.sql` aplicada no Supabase. Testado end-to-end: roteiro "INSOLE BIOHACKING" gerado via `PR-0002`/Gemini 3.1 Flash-Lite real, com cenas Gancho/Problema/Solução/Prova/Chamada para ação, salvo com sucesso. `PR-0002` promovido a Active; `PR-0002` sendo o segundo prompt real (de um Engine diferente) fez o STD-0007 avançar de 0.3.0 (Draft) para 1.0.0 (Approved) em cc-engineering-framework.
-6. Creative Engine
-7. Marketplace Engine (Shopee, Mercado Livre, Amazon)
-8. Email/WhatsApp Engine
-9. Publishing Engine (provisionamento Instagram/TikTok/TikTok Shop/YouTube)
-10. Analytics Engine
-11. Quality Engine + Prompt Lab
+6. Creative Engine — CS-013, em andamento (ver DP-013)
+7. **Diagnóstico Digital Engine (MPI)** — Planned. `SPC-0008` a escrever. Entra antes/em paralelo ao Creative Engine (DP-016). Auditar reaproveitamento de `projects`/`assets` (migração 001) antes de propor schema novo.
+8. Marketplace Engine (Shopee, Mercado Livre, Amazon)
+9. Email/WhatsApp Engine — cobre o pilar Automação/CRM do MPI (DP-016)
+10. Publishing Engine (provisionamento Instagram/TikTok/TikTok Shop/YouTube)
+11. Analytics Engine — cobre o pilar Relatórios/Métricas do MPI (DP-016)
+12. Quality Engine + Prompt Lab
+13. **Tráfego Pago Engine (MPI)** — Planned. Exige conta/API de anúncios nova (Meta/Google Ads); ordem entre este e os demais módulos que já esperavam API externa nova (item 8 e 10) ainda não decidida (DP-016).
+
+**MPI (DP-016, cc-engineering-framework, 2026-08-01):** o produto originalmente desenhado como projeto separado (`mpi/cyber-mpi-os`) passa a ser construído inteiramente aqui, como seção/marca própria dentro do Commerce Studio (mantendo os planos comerciais Essencial/Profissional/Premium), reaproveitando o modelo de tenant já existente (`workspaces`/`workspace_members`). Billing Engine (Assinaturas do MPI) já foi analisado em DP-014 — Mercado Pago Assinaturas, execução segue adiada.
 
 **Decisão de escopo (DP-010, cc-engineering-framework, 2026-07-10):** o MVP fechado é CS-007 a CS-010 com IA real ligada ao Offer Engine (ver Release-0002). A retomada dos módulos restantes (DP-011 em diante) começou por CS-011 (Landing Page Engine).
 
-**Decisão de ordem (DP-012, cc-engineering-framework, 2026-07-11):** entre os módulos restantes, prioridade para os que não exigem conta/API externa nova. Ordem confirmada: Video Script Engine → Creative Engine → Analytics Engine.
+**Decisão de ordem (DP-012, cc-engineering-framework, 2026-07-11):** entre os módulos restantes, prioridade para os que não exigem conta/API externa nova. Ordem confirmada: Video Script Engine → Creative Engine → Analytics Engine. Atualizado por DP-016 (2026-08-01): Diagnóstico Digital Engine (MPI) entra antes/em paralelo ao Creative Engine.
 
-**Status:** CS-008 Done; CS-009 Done; CS-010 Done (IA real ligada e testada); CS-011 Done (migração aplicada, testado end-to-end incluindo acesso público); CS-012 Done (migração aplicada, PR-0002 Active testado end-to-end); demais Planned
+**Status:** CS-008 Done; CS-009 Done; CS-010 Done (IA real ligada e testada); CS-011 Done (migração aplicada, testado end-to-end incluindo acesso público); CS-012 Done (migração aplicada, PR-0002 Active testado end-to-end); CS-013 In Progress (bloqueado em confirmação de billing do Google AI Studio); demais Planned
 
 ## Transversais — sem data fixa
 
